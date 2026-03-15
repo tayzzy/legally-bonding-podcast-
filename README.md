@@ -1,6 +1,6 @@
 The official website for **Legally Bonding**, a podcast covering everything law — landmark cases, solo deep dives into legal topics, and candid conversations with legal professionals.
 
-🌐 **Live site:** [yourusername.github.io/legally-bonding](https://yourusername.github.io/legally-bonding)
+🌐 **Live site:** [/legally-bonding podcast](https://legally-bonding podcast)
 
 ---
 
@@ -8,17 +8,17 @@ The official website for **Legally Bonding**, a podcast covering everything law 
 
 Legally Bonding makes the law accessible, compelling, and real. Whether it's a landmark Supreme Court ruling, the fine print in a contract, or a criminal trial that gripped the nation — every episode breaks it down in plain English, with context, nuance, and zero condescension.
 
-New episodes drop weekly — solo deep dives, guest conversations with barristers, solicitors, judges, and legal academics, and everything in between.
+New episodes drop bi- weekly — solo deep dive, guest conversations with barristers, solicitors, judges, and legal academics, and everything in between.
 
 ---
 
 ## What's on the Site
 
 - 🎙 **Episodes** — Links to all episodes with descriptions and platform badges (Spotify, Apple Podcasts, YouTube)
-- ✍️ **Blog** — Written takes on legal news, explainers, and opinions
+- ✍️ **Blog** — Hot topic! Written takes on legal news, explainers, and opinions
 - 👤 **About** — The story behind the podcast
-- 📚 **Reading List** — Books that have shaped how we think about law
-- 📬 **Newsletter** — Sign-up for episode alerts and legal news
+- 📚 **Reading List** — Growing list of Books to ensure you continue to think critically about these issues 
+- 📬 **Newsletter** — Sign-up for episode alerts, legal news and info on the latest hot topic 
 
 ---
 
