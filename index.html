@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Legally Bonding — The Law Podcast</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green: #1a3a2a;
+      --green-mid: #2d5a3d;
+      --green-light: #4a8c62;
+      --butter: #f5e87c;
+      --butter-light: #fdf5c0;
+      --white: #fafaf7;
+      --off-white: #f0ede4;
+      --ink: #0f1f17;
+      --muted: #6b7c72;
+      --card-bg: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(26,58,42,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(245,232,124,0.15);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 900; font-style: italic;
+      color: var(--butter);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: rgba(250,250,247,0.75);
+      text-decoration: none; font-size: 0.85rem;
+      font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--butter); }
+    .nav-cta {
+      background: var(--butter); color: var(--green);
+      padding: 0.55rem 1.4rem; border-radius: 2rem;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--butter-light); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      background: var(--green);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 8rem 4rem 5rem;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(245,232,124,0.12); border: 1px solid rgba(245,232,124,0.3);
+      color: var(--butter); padding: 0.4rem 1rem; border-radius: 2rem;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .hero-tag::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      font-weight: 900; line-height: 1.0; color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--butter);
+      display: block;
+    }
+    .hero-desc {
+      color: rgba(250,250,247,0.7); font-size: 1.05rem;
+      line-height: 1.75; max-width: 480px; margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--butter); color: var(--green);
+      padding: 0.85rem 2rem; border-radius: 0.4rem;
+      font-weight: 700; font-size: 0.9rem; text-decoration: none;
+      letter-spacing: 0.04em; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary:hover { background: var(--butter-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,232,124,0.25); }
+    .btn-outline {
+      border: 1.5px solid rgba(250,250,247,0.3); color: var(--white);
+      padding: 0.85rem 2rem; border-radius: 0.4rem;
+      font-weight: 500; font-size: 0.9rem; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--butter); color: var(--butter); }
+
+    /* hero right — decorative card */
+    .hero-visual {
+      position: relative; display: flex; justify-content: center;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(245,232,124,0.2);
+      border-radius: 1.2rem; padding: 2.5rem;
+      width: 100%; max-width: 380px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-card-label {
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--butter); font-weight: 600; margin-bottom: 1rem;
+    }
+    .episode-preview {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .ep-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.85rem; border-radius: 0.6rem;
+      background: rgba(255,255,255,0.06); cursor: pointer;
+      transition: background 0.2s;
+    }
+    .ep-item:hover { background: rgba(245,232,124,0.1); }
+    .ep-play {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--butter); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--green); font-size: 0.9rem;
+    }
+    .ep-info { flex: 1; }
+    .ep-title { color: var(--white); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .ep-meta { color: rgba(250,250,247,0.45); font-size: 0.72rem; font-family: 'DM Mono', monospace; }
+    .hero-stats {
+      display: flex; gap: 1.5rem; margin-top: 1.5rem;
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif; font-size: 1.6rem;
+      font-weight: 700; color: var(--butter); display: block;
+    }
+    .stat-label { font-size: 0.7rem; color: rgba(250,250,247,0.45); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* bg decoration */
+    .hero-bg-circle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,140,98,0.25), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-bg-circle.c1 { width: 600px; height: 600px; top: -200px; right: -100px; }
+    .hero-bg-circle.c2 { width: 400px; height: 400px; bottom: -150px; left: 20%; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 4rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--green-light);
+      margin-bottom: 0.75rem; font-family: 'DM Mono', monospace;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800; color: var(--ink); line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--muted); font-size: 1rem; line-height: 1.7;
+      max-width: 560px; margin-bottom: 3rem;
+    }
+
+    /* ── EPISODES ── */
+    #episodes { background: var(--off-white); }
+    .episodes-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .episode-card {
+      background: var(--card-bg); border-radius: 1rem;
+      padding: 1.75rem; border: 1px solid rgba(0,0,0,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .episode-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--butter));
+    }
+    .episode-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+    .ep-card-num {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      color: var(--muted); margin-bottom: 0.75rem; letter-spacing: 0.08em;
+    }
+    .ep-card-title {
+      font-family: 'Playfair Display', serif; font-size: 1.15rem;
+      font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; line-height: 1.3;
+    }
+    .ep-card-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.65; margin-bottom: 1.25rem; }
+    .ep-card-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .tag {
+      background: rgba(26,58,42,0.08); color: var(--green-mid);
+      padding: 0.25rem 0.75rem; border-radius: 2rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+    }
+    .ep-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 1rem; border-top: 1px solid var(--off-white);
+    }
+    .ep-duration { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--muted); }
+    .ep-listen-btn {
+      background: var(--green); color: var(--white);
+      padding: 0.45rem 1.1rem; border-radius: 2rem; font-size: 0.78rem;
+      font-weight: 600; text-decoration: none; transition: background 0.2s;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .ep-listen-btn:hover { background: var(--green-mid); }
+
+    /* platforms */
+    .platforms {
+      display: flex; align-items: center; gap: 1rem;
+      flex-wrap: wrap; margin-top: 3rem; padding-top: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .platforms-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; margin-right: 0.5rem; }
+    .platform-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--white); border: 1px solid rgba(0,0,0,0.1);
+      padding: 0.5rem 1.1rem; border-radius: 2rem;
+      font-size: 0.82rem; font-weight: 600; color: var(--ink);
+      text-decoration: none; transition: all 0.2s;
+    }
+    .platform-badge:hover { background: var(--green); color: var(--white); border-color: var(--green); }
+
+    /* ── BLOG ── */
+    #blog { background: var(--white); }
+    .blog-grid {
+      display: grid; grid-template-columns: 2fr 1fr;
+      gap: 2rem; margin-top: 2rem;
+    }
+    .blog-featured {
+      background: var(--green);
+      border-radius: 1.2rem; padding: 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .blog-featured::after {
+      content: '⚖'; position: absolute; right: 2rem; bottom: 1rem;
+      font-size: 7rem; opacity: 0.07; line-height: 1;
+    }
+    .blog-featured-label {
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--butter); font-weight: 700; margin-bottom: 1rem;
+    }
+    .blog-featured-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 800;
+      color: var(--white); line-height: 1.25; margin-bottom: 1rem;
+    }
+    .blog-featured-excerpt { color: rgba(250,250,247,0.65); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.75rem; }
+    .blog-featured-meta { display: flex; align-items: center; gap: 1rem; }
+    .blog-featured-date { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: rgba(250,250,247,0.4); }
+    .btn-ghost {
+      background: rgba(245,232,124,0.15); color: var(--butter);
+      border: 1px solid rgba(245,232,124,0.3);
+      padding: 0.5rem 1.2rem; border-radius: 0.4rem;
+      font-size: 0.82rem; font-weight: 600; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: var(--butter); color: var(--green); }
+    .blog-sidebar { display: flex; flex-direction: column; gap: 1rem; }
+    .blog-card {
+      background: var(--off-white); border-radius: 0.8rem;
+      padding: 1.5rem; border: 1px solid transparent;
+      transition: all 0.2s; text-decoration: none;
+    }
+    .blog-card:hover { border-color: var(--green-light); background: var(--white); }
+    .blog-card-cat {
+      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--green-light); font-weight: 700; margin-bottom: 0.5rem;
+    }
+    .blog-card-title {
+      font-family: 'Playfair Display', serif; font-size: 0.95rem;
+      font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 0.4rem;
+    }
+    .blog-card-date { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+
+    /* ── ABOUT ── */
+    #about {
+      background: linear-gradient(135deg, var(--green) 0%, #0f2a1a 100%);
+    }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-placeholder {
+      width: 100%; aspect-ratio: 4/5;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(245,232,124,0.2);
+      border-radius: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; color: rgba(245,232,124,0.2);
+      position: relative; overflow: hidden;
+    }
+    .about-img-placeholder::after {
+      content: '⚖'; font-size: 12rem;
+      position: absolute; bottom: -2rem; right: -2rem;
+      opacity: 0.06;
+    }
+    .about-img-badge {
+      position: absolute; bottom: -1.5rem; left: 2rem;
+      background: var(--butter); color: var(--green);
+      padding: 1rem 1.5rem; border-radius: 0.8rem;
+      font-weight: 700; font-size: 0.85rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .about-img-badge span { display: block; font-size: 1.4rem; font-family: 'Playfair Display', serif; }
+    .about-content .section-title { color: var(--white); }
+    .about-content .section-label { color: var(--butter); }
+    .about-text { color: rgba(250,250,247,0.7); font-size: 0.97rem; line-height: 1.8; margin-bottom: 1.25rem; }
+    .about-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+    .pill {
+      background: rgba(245,232,124,0.12); color: var(--butter);
+      border: 1px solid rgba(245,232,124,0.2);
+      padding: 0.4rem 1rem; border-radius: 2rem;
+      font-size: 0.8rem; font-weight: 500;
+    }
+
+    /* ── READING LIST ── */
+    #reading { background: var(--off-white); }
+    .reading-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem; margin-top: 2rem;
+    }
+    .book-card {
+      background: var(--white); border-radius: 0.9rem;
+      padding: 1.5rem; border: 1px solid rgba(0,0,0,0.06);
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .book-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .book-cover {
+      width: 52px; height: 70px; border-radius: 4px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 900;
+      font-family: 'Playfair Display', serif; color: white;
+    }
+    .book-info { flex: 1; }
+    .book-title { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; line-height: 1.3; }
+    .book-author { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .book-cat { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green-light); font-weight: 700; }
+
+    /* ── NEWSLETTER ── */
+    #newsletter {
+      background: var(--green);
+      text-align: center;
+      padding: 6rem 4rem;
+    }
+    .newsletter-inner { max-width: 600px; margin: 0 auto; }
+    .newsletter-icon {
+      width: 64px; height: 64px; background: rgba(245,232,124,0.15);
+      border: 1px solid rgba(245,232,124,0.3); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem; font-size: 1.6rem;
+    }
+    #newsletter .section-title { color: var(--white); margin-bottom: 0.75rem; }
+    #newsletter .section-title em { color: var(--butter); font-style: italic; }
+    .newsletter-desc { color: rgba(250,250,247,0.65); font-size: 1rem; line-height: 1.7; margin-bottom: 2.5rem; }
+    .newsletter-form { display: flex; gap: 0.75rem; max-width: 480px; margin: 0 auto; }
+    .newsletter-form input {
+      flex: 1; padding: 0.9rem 1.25rem; border-radius: 0.5rem;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(245,232,124,0.3);
+      color: var(--white); font-size: 0.92rem; font-family: 'DM Sans', sans-serif;
+      outline: none; transition: border-color 0.2s;
+    }
+    .newsletter-form input::placeholder { color: rgba(250,250,247,0.35); }
+    .newsletter-form input:focus { border-color: var(--butter); }
+    .newsletter-form button {
+      background: var(--butter); color: var(--green);
+      padding: 0.9rem 1.75rem; border-radius: 0.5rem;
+      border: none; font-weight: 700; font-size: 0.88rem;
+      font-family: 'DM Sans', sans-serif; cursor: pointer;
+      letter-spacing: 0.04em; transition: all 0.2s; white-space: nowrap;
+    }
+    .newsletter-form button:hover { background: var(--butter-light); transform: translateY(-1px); }
+    .newsletter-fine { margin-top: 1rem; font-size: 0.75rem; color: rgba(250,250,247,0.35); }
+    .newsletter-success {
+      display: none; background: rgba(245,232,124,0.12);
+      border: 1px solid rgba(245,232,124,0.3); border-radius: 0.6rem;
+      padding: 1rem 1.5rem; color: var(--butter);
+      font-weight: 500; margin-top: 1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink); color: rgba(250,250,247,0.5);
+      padding: 3rem 4rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 1.5rem; font-weight: 900; color: var(--butter);
+      margin-bottom: 1rem; display: block;
+    }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: rgba(250,250,247,0.45); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--butter); }
+    .footer-copy { font-size: 0.78rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      #home { padding: 7rem 1.5rem 4rem; }
+      .hero-grid, .blog-grid, .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-visual { order: -1; }
+      .hero-card { max-width: 100%; }
+      footer { padding: 2rem 1.5rem; }
+      #newsletter { padding: 4rem 1.5rem; }
+      .newsletter-form { flex-direction: column; }
+    }
+
+    /* ── SCROLL FADE IN ── */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Legally Bonding</a>
+  <ul class="nav-links">
+    <li><a href="#episodes">Episodes</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reading">Reading List</a></li>
+  </ul>
+  <a href="#newsletter" class="nav-cta">Subscribe</a>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-tag">New Episode Every Week</div>
+      <h1 class="hero-title">
+        The Law,<br>
+        <em>Unfiltered.</em>
+      </h1>
+      <p class="hero-desc">
+        Deep dives into landmark cases, solo breakdowns of complex legal concepts, and candid conversations with legal minds — Legally Bonding makes the law accessible, compelling, and real.
+      </p>
+      <div class="hero-btns">
+        <a href="#episodes" class="btn-primary">▶ &nbsp;Latest Episodes</a>
+        <a href="#about" class="btn-outline">About the Show</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-label">📻 &nbsp;Recent Episodes</div>
+        <div class="episode-preview">
+          <div class="ep-item">
+            <div class="ep-play">▶</div>
+            <div class="ep-info">
+              <div class="ep-title">The OJ Simpson Verdict, Revisited</div>
+              <div class="ep-meta">EP. 042 · 58 MIN</div>
+            </div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-play">▶</div>
+            <div class="ep-info">
+              <div class="ep-title">How Contracts Actually Work</div>
+              <div class="ep-meta">EP. 041 · 44 MIN</div>
+            </div>
+          </div>
+          <div class="ep-item">
+            <div class="ep-play">▶</div>
+            <div class="ep-info">
+              <div class="ep-title">ft. Barrister Jane Okafor</div>
+              <div class="ep-meta">EP. 040 · 67 MIN</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item"><span class="stat-num">42+</span><span class="stat-label">Episodes</span></div>
+          <div class="stat-item"><span class="stat-num">10k+</span><span class="stat-label">Listeners</span></div>
+          <div class="stat-item"><span class="stat-num">4.9★</span><span class="stat-label">Rating</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EPISODES -->
+<section id="episodes">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-label">// The Archive</div>
+      <h2 class="section-title">Latest Episodes</h2>
+      <p class="section-sub">Solo deep dives, guest interviews, and case breakdowns — all things law, no law degree required.</p>
+    </div>
+    <div class="episodes-grid">
+      <div class="episode-card fade-in">
+        <div class="ep-card-num">EP. 042 · MAR 10, 2026</div>
+        <div class="ep-card-title">The OJ Simpson Verdict, Revisited</div>
+        <div class="ep-card-desc">A thorough look at one of the most controversial criminal trials in American history — the evidence, the defence strategy, and what it tells us about race and justice.</div>
+        <div class="ep-card-tags"><span class="tag">Criminal Law</span><span class="tag">Case Study</span></div>
+        <div class="ep-card-footer">
+          <span class="ep-duration">🎙 58 min</span>
+          <a href="#" class="ep-listen-btn">▶ Listen</a>
+        </div>
+      </div>
+      <div class="episode-card fade-in">
+        <div class="ep-card-num">EP. 041 · MAR 3, 2026</div>
+        <div class="ep-card-title">How Contracts Actually Work</div>
+        <div class="ep-card-desc">From offer and acceptance to breach and remedies — a plain-English breakdown of contract law and why it affects every deal you've ever made.</div>
+        <div class="ep-card-tags"><span class="tag">Contract Law</span><span class="tag">Solo Deep Dive</span></div>
+        <div class="ep-card-footer">
+          <span class="ep-duration">🎙 44 min</span>
+          <a href="#" class="ep-listen-btn">▶ Listen</a>
+        </div>
+      </div>
+      <div class="episode-card fade-in">
+        <div class="ep-card-num">EP. 040 · FEB 24, 2026</div>
+        <div class="ep-card-title">ft. Barrister Jane Okafor — Life at the Bar</div>
+        <div class="ep-card-desc">A candid guest conversation about what it's really like to be a barrister, the cases that keep you up at night, and the unwritten rules of court.</div>
+        <div class="ep-card-tags"><span class="tag">Guest</span><span class="tag">Careers</span></div>
+        <div class="ep-card-footer">
+          <span class="ep-duration">🎙 67 min</span>
+          <a href="#" class="ep-listen-btn">▶ Listen</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- platforms -->
+    <div class="platforms fade-in">
+      <span class="platforms-label">Listen on:</span>
+      <a href="#" class="platform-badge">🎵 Spotify</a>
+      <a href="#" class="platform-badge">🎙 Apple Podcasts</a>
+      <a href="#" class="platform-badge">▶ YouTube</a>
+      <a href="#" class="platform-badge">☁ Overcast</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-label">// Thoughts & Analysis</div>
+      <h2 class="section-title">From the Blog</h2>
+      <p class="section-sub">Written takes on legal news, explainers, and opinions you won't hear in a courtroom.</p>
+    </div>
+    <div class="blog-grid fade-in">
+      <div class="blog-featured">
+        <div class="blog-featured-label">✦ Featured Post</div>
+        <div class="blog-featured-title">Why the Right to Silence Is the Most Misunderstood Concept in Criminal Law</div>
+        <div class="blog-featured-excerpt">Everyone knows "you have the right to remain silent" — but almost nobody understands what it actually means, when it applies, and why exercising it is almost always the right call.</div>
+        <div class="blog-featured-meta">
+          <span class="blog-featured-date">March 8, 2026</span>
+          <a href="#" class="btn-ghost">Read More →</a>
+        </div>
+      </div>
+      <div class="blog-sidebar">
+        <a href="#" class="blog-card">
+          <div class="blog-card-cat">Constitutional Law</div>
+          <div class="blog-card-title">The UK Human Rights Act: What It Does and What It Doesn't</div>
+          <div class="blog-card-date">February 28, 2026</div>
+        </a>
+        <a href="#" class="blog-card">
+          <div class="blog-card-cat">Opinion</div>
+          <div class="blog-card-title">Should Non-Lawyers Be Able to Own Law Firms?</div>
+          <div class="blog-card-date">February 14, 2026</div>
+        </a>
+        <a href="#" class="blog-card">
+          <div class="blog-card-cat">Explainer</div>
+          <div class="blog-card-title">Tort vs Crime: A Simple Breakdown</div>
+          <div class="blog-card-date">January 31, 2026</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner about-grid">
+    <div class="about-img-wrap fade-in">
+      <div class="about-img-placeholder">🎙</div>
+      <div class="about-img-badge">
+        <span>42+</span>
+        Episodes & Counting
+      </div>
+    </div>
+    <div class="about-content fade-in">
+      <div class="section-label">// The Host</div>
+      <h2 class="section-title" style="color:var(--white)">About <em style="color:var(--butter);font-style:italic">Legally Bonding</em></h2>
+      <p class="about-text">
+        Legally Bonding was born out of a simple belief: the law shapes every part of our lives, yet most of us have no idea how it actually works. This podcast exists to change that.
+      </p>
+      <p class="about-text">
+        Whether it's a landmark Supreme Court ruling, the fine print in a contract, or a criminal trial that gripped the nation — every episode breaks it down in plain English, with context, nuance, and zero condescension.
+      </p>
+      <p class="about-text">
+        New episodes drop weekly — solo deep dives, guest conversations with barristers, solicitors, judges, and legal academics, and everything in between.
+      </p>
+      <div class="about-pills">
+        <span class="pill">Criminal Law</span>
+        <span class="pill">Contract Law</span>
+        <span class="pill">Human Rights</span>
+        <span class="pill">Case Studies</span>
+        <span class="pill">Guest Interviews</span>
+        <span class="pill">Legal History</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- READING LIST -->
+<section id="reading">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-label">// Recommended Reads</div>
+      <h2 class="section-title">The Reading List</h2>
+      <p class="section-sub">Books that have shaped how I think about law — from gripping case narratives to essential legal theory.</p>
+    </div>
+    <div class="reading-grid">
+      <div class="book-card fade-in">
+        <div class="book-cover" style="background:linear-gradient(135deg,#1a3a2a,#2d5a3d)">⚖</div>
+        <div class="book-info">
+          <div class="book-title">Just Mercy</div>
+          <div class="book-author">Bryan Stevenson</div>
+          <div class="book-cat">Criminal Justice</div>
+        </div>
+      </div>
+      <div class="book-card fade-in">
+        <div class="book-cover" style="background:linear-gradient(135deg,#8B4513,#a0522d)">📖</div>
+        <div class="book-info">
+          <div class="book-title">The Rule of Law</div>
+          <div class="book-author">Tom Bingham</div>
+          <div class="book-cat">Legal Theory</div>
+        </div>
+      </div>
+      <div class="book-card fade-in">
+        <div class="book-cover" style="background:linear-gradient(135deg,#2c3e50,#34495e)">🏛</div>
+        <div class="book-info">
+          <div class="book-title">Twelve Angry Men</div>
+          <div class="book-author">Reginald Rose</div>
+          <div class="book-cat">Jury & Courts</div>
+        </div>
+      </div>
+      <div class="book-card fade-in">
+        <div class="book-cover" style="background:linear-gradient(135deg,#7b2d8b,#9b59b6)">⚡</div>
+        <div class="book-info">
+          <div class="book-title">I Am Malala</div>
+          <div class="book-author">Malala Yousafzai</div>
+          <div class="book-cat">Human Rights</div>
+        </div>
+      </div>
+      <div class="book-card fade-in">
+        <div class="book-cover" style="background:linear-gradient(135deg,#c0392b,#e74c3c)">📜</div>
+        <div class="book-info">
+          <div class="book-title">To Kill a Mockingbird</div>
+          <div class="book-author">Harper Lee</div>
+          <div class="book-cat">Race & Justice</div>
+        </div>
+      </div>
+      <div class="book-card fade-in">
+        <div class="book-cover" style="background:linear-gradient(135deg,#16a085,#1abc9c)">🔍</div>
+        <div class="book-info">
+          <div class="book-title">The Anatomy of Injustice</div>
+          <div class="book-author">Raymond Bonner</div>
+          <div class="book-cat">Criminal Law</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="newsletter-inner">
+    <div class="newsletter-icon">📬</div>
+    <h2 class="section-title" style="font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900">
+      Stay <em>In the Know</em>
+    </h2>
+    <p class="newsletter-desc">
+      Get new episode alerts, exclusive blog posts, reading recommendations, and legal news that actually matters — straight to your inbox. No spam, ever.
+    </p>
+    <div class="newsletter-form">
+      <input type="email" id="email-input" placeholder="your@email.com" />
+      <button onclick="handleSubscribe()">Subscribe →</button>
+    </div>
+    <div class="newsletter-success" id="success-msg">
+      ✓ &nbsp;You're in! First email coming soon.
+    </div>
+    <p class="newsletter-fine">Join 2,000+ legal curious minds. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Legally Bonding</span>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#episodes">Episodes</a>
+    <a href="#blog">Blog</a>
+    <a href="#about">About</a>
+    <a href="#reading">Reading List</a>
+    <a href="#newsletter">Newsletter</a>
+  </div>
+  <p class="footer-copy">© 2026 Legally Bonding. All rights reserved.</p>
+</footer>
+
+<script>
+  // Newsletter subscribe
+  function handleSubscribe() {
+    const input = document.getElementById('email-input');
+    const success = document.getElementById('success-msg');
+    if (input.value && input.value.includes('@')) {
+      input.style.display = 'none';
+      document.querySelector('.newsletter-form button').style.display = 'none';
+      success.style.display = 'block';
+    } else {
+      input.style.borderColor = '#e74c3c';
+      setTimeout(() => input.style.borderColor = '', 1500);
+    }
+  }
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Newsletter enter key
+  document.getElementById('email-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleSubscribe();
+  });
+</script>
+</body>
+</html>
