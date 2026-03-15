@@ -1,6 +1,6 @@
 The official website for **Legally Bonding**, a podcast covering everything law — landmark cases, solo deep dives into legal topics, and candid conversations with legal professionals.
 
-🌐 **Live site:** [/legally-bonding podcast](https://legally-bonding-podcast)
+🌐 **Live site:** [yourusername.github.io/legally-bonding](https://yourusername.github.io/legally-bonding) 
 
 ---
 
